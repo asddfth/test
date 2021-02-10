@@ -16,9 +16,9 @@ class MyWindow(QMainWindow):
         btn1 = QPushButton("종목 코드 얻기", self)
         btn1.move(190, 10)
         btn1.clicked.connect(self.btn1_clicked)
-
         self.listWidget = QListWidget(self)
         self.listWidget.setGeometry(10,10,170,130)
+
 
     def btn1_clicked(self):
         ret = self.kiwoom.dynamicCall("GetCodeListByMarket(QString)", ["0"])
@@ -30,6 +30,7 @@ class MyWindow(QMainWindow):
             kospi_code_name_list.append(x + " : " + name)
 
         self.listWidget.addItems(kospi_code_name_list)
+        return kospi_code_name_list
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
